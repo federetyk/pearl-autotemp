@@ -1,6 +1,6 @@
 # On Meta-Reinforcement Learning in Task Distributions with Varying Dynamics
 
-This GitHub repository is a companion for my Master's Thesis.
+This GitHub repository is a companion for my Master's Thesis, where I was supervised by Dr. Mario Martín.
 
 > Meta-reinforcement learning has the potential to enable artificial agents that are able to 
 master new skills with improved sample complexity, by leveraging 
