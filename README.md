@@ -1,3 +1,53 @@
+# On Meta-Reinforcement Learning in Task Distributions with Varying Dynamics
+
+This GitHub repository is a companion for my Master's Thesis.
+
+> Meta-reinforcement learning has the potential to enable artificial agents that are able to 
+master new skills with improved sample complexity, by leveraging 
+previous learning experience in tasks that are diverse but share common 
+structure. Our focus in this work is to study the application of 
+such algorithms to task distributions where the dynamics of the 
+environment is the main factor of variation. We start by providing 
+an introductory background for the related fields, including deep 
+reinforcement learning, variational inference, and meta-learning. 
+Having covered the basics, we share a study of the state-of-the-art 
+algorithms for meta-reinforcement learning and perform an empirical 
+investigation of PEARL, a method that combines soft actor-critic with 
+latent task variables. Based on our study, we propose and implement 
+two algorithmic modifications for this technique: one that aims to 
+improve the meta-training sample complexity by automatically adjusting 
+a critical hyperparameter, and a second one focused on improving 
+the meta-testing asymptotic performance by fine-tuning the policy 
+during adaptation. Using a new multi-task environment suite for 
+simulated robotics continuous control tasks, we experiment and 
+compare the original version of PEARL and our proposed variants, 
+obtaining favourable results. We finally ponder our findings and 
+suggest future lines of work.
+
+Here we include an adapted version of PEARL [[1](http://proceedings.mlr.press/v97/rakelly19a.html), 
+[2](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2020/EECS-2020-224.pdf)], a meta-reinforcement
+learning algorithm by Kate Rakelly, Aurick Zhou, Deirdre Quillen, Chelsea Finn, and Sergey Levine. 
+
+In our adapted version, the temperature, which modulates the entropy bonus during meta-training, 
+is casted as an hyperparameter as 
+proposed for SAC by Haarnoja and colleagues [[3](https://arxiv.org/abs/1812.05905)]. We also 
+modified the procedure for adaptation to new tasks during meta-testing, where we allow gradient
+updates as a way to fine-tune the policy (informed by the latent task variables).
+
+Instead of the original MuJoCo continuous control environments, we include a new environment
+suite that is based on the [[Bullet Physics SDK](https://github.com/bulletphysics/bullet3)]. 
+Therefore, to install this repo please follow Kate's instructions, but installing
+[[PyBullet](https://pybullet.org/)] instead of MuJoCo.
+
+#### TODO
+- [ ] Include proper sub-license, with correct attributions to the copyright owners of PEARL's original source code (current LICENSE file is just a copy of the original).
+
+Below we include the complete content of the README.md of the original GitHub 
+repository by Kate Rakelly: https://github.com/katerakelly/oyster
+
+
+--------------------------------------
+
 # PEARL: Efficient Off-policy Meta-learning via Probabilistic Context Variables
 
 on arxiv: http://arxiv.org/abs/1903.08254

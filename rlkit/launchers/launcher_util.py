@@ -6,6 +6,7 @@ import pickle
 import random
 import sys
 import time
+import torch
 import uuid
 import click
 from collections import namedtuple
@@ -198,7 +199,7 @@ def create_simple_exp_name():
     return timestamp
 
 
-def create_log_dir(exp_prefix, exp_id=None, seed=0, base_log_dir=None):
+def create_log_dir(exp_prefix, exp_id=None, base_log_dir=None):
     """
     Creates and returns a unique log directory.
 
@@ -219,10 +220,11 @@ def create_log_dir(exp_prefix, exp_id=None, seed=0, base_log_dir=None):
 def setup_logger(
         exp_prefix="default",
         exp_id=0,
-        seed=0,
+        tasks=None,
         variant=None,
         base_log_dir=None,
         text_log_file="debug.log",
+        tasks_log_file="tasks.json",
         variant_log_file="variant.json",
         tabular_log_file="progress.csv",
         snapshot_mode="last",
@@ -244,12 +246,13 @@ def setup_logger(
     If log_dir is specified, then that directory is used as the output dir.
 
     :param exp_prefix: The sub-directory for this specific experiment.
-    :param exp_id: The number of the specific experiment run within this
-    experiment.
+    :param exp_id: The ID of the specific experiment run.
+    :param tasks: The ID of the specific experiment run.
     :param variant:
     :param base_log_dir: The directory where all log should be saved.
     :param text_log_file:
     :param variant_log_file:
+    :param tasks_log_file:
     :param tabular_log_file:
     :param snapshot_mode:
     :param log_tabular_only:
@@ -261,14 +264,20 @@ def setup_logger(
     """
     first_time = log_dir is None
     if first_time:
-        log_dir = create_log_dir(exp_prefix, exp_id=exp_id, seed=seed,
+        log_dir = create_log_dir(exp_prefix, exp_id=exp_id,
                                  base_log_dir=base_log_dir)
 
     if variant is not None:
         logger.log("Variant:")
         logger.log(json.dumps(dict_to_safe_json(variant), indent=2))
         variant_log_path = osp.join(log_dir, variant_log_file)
-        logger.log_variant(variant_log_path, variant)
+        logger.log_json_data(variant_log_path, variant)
+
+    if tasks is not None:
+        #logger.log("Tasks:")
+        #logger.log(json.dumps(dict_to_safe_json(tasks), indent=2))
+        tasks_log_path = osp.join(log_dir, tasks_log_file)
+        logger.log_json_data(tasks_log_path, tasks)
 
     tabular_log_path = osp.join(log_dir, tabular_log_file)
     text_log_path = osp.join(log_dir, text_log_file)
@@ -343,6 +352,7 @@ def set_seed(seed):
     seed = int(seed)
     random.seed(seed)
     np.random.seed(seed)
+    torch.manual_seed(seed)
 
 
 def reset_execution_environment():

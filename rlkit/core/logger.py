@@ -169,8 +169,8 @@ def save_extra_data(data, path='extra_data', ext='.pkl'):
     :param data: Something pickle'able.
     """
     file_name = osp.join(_snapshot_dir, path + ext)
-    with open(file_name, 'wb') as f:
-        pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
+    #with open(file_name, 'wb') as f:
+    #    pickle.dump(data, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 def get_table_dict():
@@ -295,10 +295,10 @@ class MyEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
-def log_variant(log_file, variant_data):
+def log_json_data(log_file, json_data):
     mkdir_p(os.path.dirname(log_file))
     with open(log_file, "w") as f:
-        json.dump(variant_data, f, indent=2, sort_keys=True, cls=MyEncoder)
+        json.dump(json_data, f, indent=2, sort_keys=True, cls=MyEncoder)
 
 
 def record_tabular_misc_stat(key, values, placement='back'):
