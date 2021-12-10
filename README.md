@@ -1,6 +1,10 @@
 # On Meta-Reinforcement Learning in Task Distributions with Varying Dynamics
 
-This GitHub repository is a companion for my Master's Thesis, where I was supervised by Dr. Mario Martín.
+This GitHub repository is a companion for my Master's Thesis 
+[[1](https://upcommons.upc.edu/bitstream/handle/2117/348143/155944.pdf?sequence=1)],
+where I was supervised by [Dr. Mario Martín](https://scholar.google.com/citations?user=SGZH24YAAAAJ&hl=en&oi=ao).
+
+https://upcommons.upc.edu/handle/2117/348143
 
 > Meta-reinforcement learning has the potential to enable artificial agents that are able to 
 master new skills with improved sample complexity, by leveraging 
@@ -24,13 +28,13 @@ compare the original version of PEARL and our proposed variants,
 obtaining favourable results. We finally ponder our findings and 
 suggest future lines of work.
 
-Here we include an adapted version of PEARL [[1](http://proceedings.mlr.press/v97/rakelly19a.html), 
-[2](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2020/EECS-2020-224.pdf)], a meta-reinforcement
+Here we include an adapted version of PEARL [[2](http://proceedings.mlr.press/v97/rakelly19a.html), 
+[3](https://www2.eecs.berkeley.edu/Pubs/TechRpts/2020/EECS-2020-224.pdf)], a meta-reinforcement
 learning algorithm by Kate Rakelly, Aurick Zhou, Deirdre Quillen, Chelsea Finn, and Sergey Levine. 
 
 In our adapted version, the temperature, which modulates the entropy bonus during meta-training, 
 is casted as an hyperparameter as 
-proposed for SAC by Haarnoja and colleagues [[3](https://arxiv.org/abs/1812.05905)]. We also 
+proposed for SAC by Haarnoja and colleagues [[4](https://arxiv.org/abs/1812.05905)]. We also 
 modified the procedure for adaptation to new tasks during meta-testing, where we allow gradient
 updates as a way to fine-tune the policy (informed by the latent task variables).
 
